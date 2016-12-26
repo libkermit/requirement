@@ -1,6 +1,7 @@
 package requirement
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -33,7 +34,7 @@ func TestIsFuncFalse(t *testing.T) {
 	s := &customSkip{}
 	Is(s, alwaysFalse)
 	expected := "unmatched requirement alwaysFalse"
-	if s.reason != expected {
+	if !strings.Contains(s.reason, expected) {
 		t.Fatalf("expected reason %q, got %q", expected, s.reason)
 	}
 }
@@ -44,7 +45,7 @@ func TestIsAnonymousFunc(t *testing.T) {
 		return false
 	})
 	expected := "unmatched requirement TestIsAnonymousFunc.func1"
-	if s.reason != expected {
+	if !strings.Contains(s.reason, expected) {
 		t.Fatalf("expected reason %q, got %q", expected, s.reason)
 	}
 }

@@ -19,7 +19,7 @@ To write a test with a requirement, you need import this library and call it lik
     }
 ```
 
-This will print `requirement.go:40: unmatched requirement TestWithRequirement.func1`
+This will print `requirement.go:51: requirement_test.go:56: unmatched requirement TestWithRequirement.func1`
 
 ## Provided requirement
 

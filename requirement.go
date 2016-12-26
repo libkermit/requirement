@@ -10,12 +10,13 @@
 //     }
 //
 // This will print
-//     requirement.go:40: unmatched requirement TestWithRequirement.func1
+//     requirement.go:51: requirement_test.go:56: unmatched requirement TestWithRequirement.func1
 package requirement
 
 import (
 	"fmt"
 	"path"
+	"path/filepath"
 	"reflect"
 	"runtime"
 	"strings"
@@ -36,9 +37,18 @@ func Is(s skipT, requirements ...test) {
 		isValid := r()
 		if !isValid {
 			requirementFunc := runtime.FuncForPC(reflect.ValueOf(r).Pointer()).Name()
-			s.Skip(fmt.Sprintf("unmatched requirement %s", extractRequirement(requirementFunc)))
+			skip(s, requirementFunc)
 		}
 	}
+}
+
+func skip(s skipT, reason string) {
+	var source string
+	_, filename, line, ok := runtime.Caller(2)
+	if ok {
+		source = fmt.Sprintf("%s:%d: ", filepath.Base(filename), line)
+	}
+	s.Skip(fmt.Sprintf("%sunmatched requirement %s", source, extractRequirement(reason)))
 }
 
 func extractRequirement(requirementFunc string) string {
