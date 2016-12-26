@@ -1,6 +1,6 @@
 // Package requirement provides support for requirement to be able to skip some tests depending on the environment.
-// It is intended to work at lesat with the built-in `testing` framework. But any testing framework that
-// defines a `Skip(args ...interface{})` method can be used.
+// It is intended to work at least with the built-in ``testing'' framework. But any testing framework that
+// defines a ``Skip(args ...interface{})'' method can be used.
 //
 // To write a test with a requirement, you need import this library and call it like the following
 //     func TestWithRequirement(t *testing.T) {
@@ -9,7 +9,7 @@
 //         })
 //     }
 //
-// This will print `requirement.go:40: unmatched requirement TestWithRequirement.func1`
+// This will print ``requirement.go:40: unmatched requirement TestWithRequirement.func1''
 package requirement
 
 import (
