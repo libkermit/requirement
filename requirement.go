@@ -9,7 +9,8 @@
 //         })
 //     }
 //
-// This will print ``requirement.go:40: unmatched requirement TestWithRequirement.func1''
+// This will print
+//     requirement.go:40: unmatched requirement TestWithRequirement.func1
 package requirement
 
 import (
